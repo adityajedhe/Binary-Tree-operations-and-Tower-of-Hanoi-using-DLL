@@ -930,7 +930,7 @@ void BinaryTree::RetrieveLeafNodesOfBinaryTreeNode(Node *ipNode,
 void BinaryTree::RetrieveNonLeafNodesOfBinaryTreeNode(Node *ipNode,
                                                       std::vector<Node *> &iovNodes)
 {
-    if ((nullptr != ipNode) &&((nullptr != ipNode->GetLeftNode()) ||
+    if ((nullptr != ipNode) && ((nullptr != ipNode->GetLeftNode()) ||
                                 (nullptr != ipNode->GetRightNode())))
     {
         iovNodes.push_back(ipNode);
