@@ -1,4 +1,4 @@
-## 💻 Professional GitHub Project Descriptions
+## GitHub Project Description
 
 ### 1. **Advanced Binary Tree Implementation using Doubly Linked Lists**
 
