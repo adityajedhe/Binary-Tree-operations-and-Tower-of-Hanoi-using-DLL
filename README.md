@@ -1,45 +1,45 @@
-# Double Link List Projects
+## 💻 Professional GitHub Project Descriptions
 
-## Projects
+### 1. **Advanced Binary Tree Implementation using Doubly Linked Lists**
 
-### 1. Binary Tree Operations Using Double Link List
+This project demonstrates a novel and comprehensive implementation of **Binary Tree operations** where the underlying node structure is represented by a **Doubly Linked List**. This non-standard approach provides enhanced flexibility, particularly for traversal and node manipulation, by leveraging the bidirectional links (parent, left-child, and right-child pointers) inherent in a doubly linked structure.
 
-In this project, I have implemented various binary tree operations using a double link list. The operations include insertion, deletion, traversal, and searching within a binary tree structure.
+#### ✨ **Core Features & Operations**
 
-#### List of Operations:
-01. Create a binary tree
-02. Insert a node in the binary tree
-03. Delete a node from the binary tree
-04. Search for a node in the binary tree
-05. Traverse the binary tree
-    > Pre-order
-    > In-order
-    > Post-order
-    > Level-order
-06. Find the height of the binary tree
-07. Find the number of nodes in the binary tree
-08. Find the number of leaf nodes in the binary tree
-09. Find the number of non-leaf nodes in the binary tree
-10. Find the number of full nodes in the binary tree
-11. Find the number of half nodes in the binary tree
-12. Find the number of sibling of a node in the binary tree
-13. Find the number of cousins of a node in the binary tree
-14. Find the number of descendants of a node in the binary tree
-15. Find the number of ancestors of a node in the binary tree
-16. Find the ancestor of a node in the binary tree
-17. Find the level of a node in the binary tree
-18. Find all the nodes at the border of the binary tree
+The implementation provides a complete set of operations essential for a robust binary tree library:
 
-#### Implementation Details:
-- **Language Used:** C++
-- **Data Structure:** Double Link List
-- **Complexity:** The time and space complexity for each operation is analyzed and optimized for efficient performance.
+| Category | Operations Implemented |
+| :--- | :--- |
+| **Structure & Modification** | Creation, Node Insertion, Node Deletion, Node Searching. |
+| **Traversal Methods** | **Pre-order, In-order, Post-order,** and **Level-order** traversal. |
+| **Structural Analysis** | Calculation of Tree **Height**, Total **Node Count**, and **Level** of any given node. |
+| **Node Categorization** | Counting of **Leaf, Non-Leaf, Full, Half** nodes, and identifying **Boundary Nodes**. |
+| **Relationship Analysis** | Finding and counting **Ancestors, Descendants, Siblings,** and **Cousins** for a specific node. |
 
-### 2. Tower of Hanoi
+#### 🛠️ **Implementation Details**
 
-This project involves solving the classic Tower of Hanoi problem using a double link list. The solution demonstrates the use of double link lists to manage the movement of disks between the towers efficiently.
+* **Language:** C++
+* **Data Structure:** Custom-built Node leveraging a **Doubly Linked List** paradigm.
+* **Performance:** All operations are developed with a strong focus on **time and space complexity analysis**, ensuring optimized and efficient performance, particularly for the search and traversal algorithms.
 
-#### Implementation Details:
-- **Language Used:** C++
-- **Data Structure:** Double Link List
-- **Complexity:** The solution is designed to minimize the number of moves and optimize the performance.
+***
+
+### 2. **Tower of Hanoi Solver using Doubly Linked Lists for Disk Management**
+
+This project provides an efficient and elegant solution to the classic **Tower of Hanoi** problem. The unique aspect of this implementation is the strategic use of a **Doubly Linked List** to model and manage the stack of disks on each tower.
+
+#### 🎯 **Objective & Solution**
+
+The solution iteratively transfers all disks from the source peg to the destination peg, adhering strictly to the constraints of the puzzle (only one disk moved at a time, and a larger disk can never be placed on a smaller disk).
+
+#### 💡 **Technical Advantage**
+
+The adoption of a Doubly Linked List for disk management offers several key advantages:
+* **Efficient Stack Operations:** It facilitates **$O(1)$** insertion (push) and deletion (pop) operations, which are crucial for simulating the movement of the top disk.
+* **Clear State Representation:** The list structure provides a clear, ordered, and easily manipulable representation of the disks on each tower throughout the recursive process.
+
+#### 🛠️ **Implementation Details**
+
+* **Language:** C++
+* **Data Structure:** **Doubly Linked List** used to represent the stack of disks on each of the three towers.
+* **Optimization:** The solution is designed to achieve the theoretical minimum number of moves, $2^n - 1$ (where $n$ is the number of disks), ensuring **optimal time complexity**.
