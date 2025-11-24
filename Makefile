@@ -7,7 +7,7 @@ Project_Common := Common
 Project_BinaryTree := Binary_Tree_Operations
 Project_HanoiTower := Tower_Of_Hanoi
 
-TARGET := $(Project_Common) $(Project_BinaryTree) $(Project_HanoiTower)
+TARGET := $(Project_BinaryTree) $(Project_HanoiTower)
 
 all: $(TARGET)
 
