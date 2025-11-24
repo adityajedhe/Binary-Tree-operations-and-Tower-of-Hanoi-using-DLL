@@ -29,7 +29,7 @@ public:
     /**
      * @brief Constructor for DiskStack
      */
-    DiskStack();
+    DiskStack() = default;
 
     /**
      * @brief Destructor for DiskStack
@@ -58,19 +58,16 @@ public:
      * @brief Returns the top disk node from the stack.
      * @return Pointer to the top disk node in the stack.
      */
-    Node *GetTopDisk() const;
+    inline Node *GetTopDisk() const
+    {
+        return _pTopDisk;
+    }
 
 private:
     /**
-     * @brief Checks if the stack is empty.
-     * @return Returns True if the stack is empty, false otherwise.
-     */
-    bool IsStackEmpty() const;
-
-    /**
      *  @brief Pointer to the top disk in the stack.
      */
-    Node *_pTopDisk;
+    Node *_pTopDisk = nullptr;
 };
 
 #endif // _DISKSTACK_H_

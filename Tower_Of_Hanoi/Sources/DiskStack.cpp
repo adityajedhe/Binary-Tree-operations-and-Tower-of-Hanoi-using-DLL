@@ -17,11 +17,6 @@
 #include <iostream>
 
 //-------------------------------------------------------------------
-DiskStack::DiskStack() : _pTopDisk(nullptr)
-{
-}
-
-//-------------------------------------------------------------------
 DiskStack::~DiskStack()
 {
     Node *pNode = PopFromStack();
@@ -29,7 +24,6 @@ DiskStack::~DiskStack()
     while (nullptr != pNode)
     {
         delete pNode;
-
         pNode = PopFromStack();
     }
 }
@@ -52,7 +46,6 @@ Node *DiskStack::PopFromStack()
     if (nullptr != pNode)
     {
         _pTopDisk = pNode->GetRightNode();
-
         pNode->SetRightNode(nullptr);
     }
 
@@ -76,29 +69,5 @@ void DiskStack::PrintStack() const
         }
     }
 
-    std::cout << std::endl;
-}
-
-//-------------------------------------------------------------------
-Node *DiskStack::GetTopDisk() const
-{
-    return _pTopDisk;
-}
-
-//===================================================================
-// Private member functions
-//===================================================================
-
-//-------------------------------------------------------------------
-bool DiskStack::IsStackEmpty() const
-{
-    bool bEmpty(false);
-
-    if (nullptr == _pTopDisk)
-    {
-        std::cout << "ERR<<Stack is empty.>>" << std::endl;
-        bEmpty = true;
-    }
-
-    return bEmpty;
+    std::cout << '\n';
 }

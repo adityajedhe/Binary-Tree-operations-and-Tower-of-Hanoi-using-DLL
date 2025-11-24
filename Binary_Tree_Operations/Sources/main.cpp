@@ -172,7 +172,7 @@ int RetrieveUserOperation()
                   22. Find the immidiate ancestor of a node in the binary tree\
                   23. Find the height of the binary tree\
                   24. Find the level of a node in the binary tree"
-        << std::endl;
+        << '\n';
 
     int nOption(0);
 

@@ -47,15 +47,7 @@ void BinaryTree::RemoveBinaryTree(BinaryTree *&ipBinaryTree)
 //-------------------------------------------------------------------
 bool BinaryTree::IsEmpty()
 {
-    bool bEmpty(false);
-
-    if (nullptr == _pRootNode)
-    {
-        std::cout << "ERR<<Tree is empty.>>" << std::endl;
-        bEmpty = true;
-    }
-
-    return bEmpty;
+    return (nullptr == _pRootNode);
 }
 
 //-------------------------------------------------------------------
@@ -70,7 +62,7 @@ void BinaryTree::InsertNodeInBinaryTree(int inData)
 
     if (nullptr == pNewNode)
     {
-        std::cout << "Memory allocation failed" << std::endl;
+        std::cout << "Memory allocation failed" << '\n';
         return;
     }
     else if (nullptr == _pRootNode)
@@ -180,7 +172,7 @@ void BinaryTree::DeleteBinaryTreeNode(int inData)
         return;
     }
 
-    std::cout << "Deleting data: " << inData << std::endl;
+    std::cout << "Deleting data: " << inData << '\n';
 }
 
 //-------------------------------------------------------------------
@@ -222,7 +214,7 @@ void BinaryTree::PreOrderTraversal()
         }
     }
 
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
 //-------------------------------------------------------------------
@@ -247,7 +239,7 @@ void BinaryTree::InOrderTraversal()
         }
     }
 
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
 //-------------------------------------------------------------------
@@ -272,7 +264,7 @@ void BinaryTree::PostOrderTraversal()
         }
     }
 
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
 //-------------------------------------------------------------------
@@ -297,7 +289,7 @@ void BinaryTree::LevelOrderTraversal()
         }
     }
 
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
 //-------------------------------------------------------------------
@@ -328,7 +320,7 @@ void BinaryTree::ReverseLevelOrderTraversal()
         }
     }
 
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
 //-------------------------------------------------------------------
@@ -353,7 +345,7 @@ void BinaryTree::SpiralOrderTraversal()
         }
     }
 
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
 //-------------------------------------------------------------------
@@ -378,7 +370,7 @@ void BinaryTree::PrintLeafNodes()
         }
     }
 
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
 //-------------------------------------------------------------------
@@ -403,7 +395,7 @@ void BinaryTree::PrintNonLeafNodes()
         }
     }
 
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
 //-------------------------------------------------------------------
@@ -437,7 +429,7 @@ void BinaryTree::PrintBoundaryNodes()
         }
     }
 
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
 //-------------------------------------------------------------------
@@ -458,7 +450,7 @@ void BinaryTree::PrintAllFullNodes()
         }
     }
 
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
 //-------------------------------------------------------------------
@@ -479,7 +471,7 @@ void BinaryTree::PrintAllHalfNodes()
         }
     }
 
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
 //-------------------------------------------------------------------
@@ -501,7 +493,7 @@ void BinaryTree::PrintAllNodesAtKDistance(int inKDistance)
         }
     }
 
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
 //-------------------------------------------------------------------
@@ -515,10 +507,10 @@ void BinaryTree::PrintSibling(int inData)
     }
     else
     {
-        std::cout << "No sibling present for the given data." << std::endl;
+        std::cout << "No sibling present for the given data." << '\n';
     }
 
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
 //-------------------------------------------------------------------
@@ -540,7 +532,7 @@ void BinaryTree::PrintCousins(int inData)
         }
     }
 
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
 //-------------------------------------------------------------------
@@ -571,10 +563,10 @@ void BinaryTree::PrintAncestors(int inData)
     }
     else
     {
-        std::cout << "Node is not found for the given data." << std::endl;
+        std::cout << "Node is not found for the given data." << '\n';
     }
 
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
 //-------------------------------------------------------------------
@@ -601,7 +593,7 @@ void BinaryTree::PrintDecendants(int inData)
         }
     }
 
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
 //-------------------------------------------------------------------
@@ -620,10 +612,10 @@ void BinaryTree::PrintAncestor(int inData)
     }
     else
     {
-        std::cout << "Node is not found for the given data." << std::endl;
+        std::cout << "Node is not found for the given data." << '\n';
     }
 
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
 //-------------------------------------------------------------------

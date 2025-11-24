@@ -79,7 +79,7 @@ int main()
      */
     int nbDisks = 0;
 
-    std::cout << "Tower of Hanoi" << std::endl;
+    std::cout << "Tower of Hanoi" << '\n';
     std::cout << "Enter number of disks: ";
     std::cin >> nbDisks;
 
@@ -95,7 +95,7 @@ int main()
 
     if ((nullptr == pStackA) || (nullptr == pStackB) || (nullptr == pStackC))
     {
-        std::cout << "Memory allocation failed" << std::endl;
+        std::cout << "Memory allocation failed" << '\n';
 
         DeleteStack(pStackA);
         DeleteStack(pStackB);
@@ -116,7 +116,7 @@ int main()
 
         if (nullptr == pNode)
         {
-            std::cout << "Memory allocation failed" << std::endl;
+            std::cout << "Memory allocation failed" << '\n';
 
             DeleteStack(pStackA);
             DeleteStack(pStackB);
@@ -173,7 +173,7 @@ void TowerOfHanoi(Node *ipCurrentNode, DiskStack *ipSourceRod, DiskStack *ipDest
         (nullptr == ipDestinationRod) ||
         (nullptr == ipHelperRod))
     {
-        std::cout << "Invalid input" << std::endl;
+        std::cout << "Invalid input" << '\n';
         return;
     }
 
@@ -248,9 +248,9 @@ void PrintStacks()
      * Print all the contents of the helper rod
      * Print all the contents of the destination rod
      */
-    std::cout << "Iteration: " << nbIterations++ << std::endl;
+    std::cout << "Iteration: " << nbIterations++ << '\n';
 
-    std::cout << "         [TOP]" << std::endl;
+    std::cout << "         [TOP]" << '\n';
 
     std::cout << "Tower A: ";
     pStackA->PrintStack();
@@ -261,6 +261,6 @@ void PrintStacks()
     std::cout << "Tower C: ";
     pStackC->PrintStack();
 
-    std::cout << std::endl;
-    std::cout << "-----------------------------" << std::endl;
+    std::cout << '\n';
+    std::cout << "-----------------------------" << '\n';
 }
