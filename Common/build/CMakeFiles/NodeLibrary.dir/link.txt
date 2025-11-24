@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\NodeLibrary.dir/objects.a
-C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\NodeLibrary.dir/objects.a @CMakeFiles\NodeLibrary.dir\objects1.rsp
-C:\msys64\ucrt64\bin\g++.exe -shared -o libNodeLibrary.dll -Wl,--out-implib,libNodeLibrary.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -Wl,--whole-archive CMakeFiles\NodeLibrary.dir/objects.a -Wl,--no-whole-archive @CMakeFiles\NodeLibrary.dir\linkLibs.rsp
