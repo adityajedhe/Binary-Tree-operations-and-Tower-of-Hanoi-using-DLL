@@ -16,6 +16,7 @@
 
 // ---------------------------------------------- System headers
 #include <iostream>
+#include <memory>
 
 /**
  * @brief Main function to solve the Tower of Hanoi problem
@@ -23,31 +24,25 @@
 int main();
 
 /**
- * @brief Function to delete the stack and its all nodes
- * @param[in, out] iopStack Pointer to the stack to be deleted
- */
-void DeleteStack(DiskStack *&iopStack);
-
-/**
  * @brief Function to solve the Tower of Hanoi problem
  * @param[in] ipCurrentNode Pointer to the current disk node
- * @param[in] ipSourceRod Pointer to the source rod
- * @param[in] ipDestinationRod Pointer to the destination rod
- * @param[in] ipHelperRod Pointer to the helper rod
+ * @param[in] ispSourceTower Pointer to the source tower
+ * @param[in] ispDestinationTower Pointer to the destination tower
+ * @param[in] ispHelperTower Pointer to the helper tower
  * @note This function calls itself recursively
  */
-void TowerOfHanoi(Node *ipCurrentNode, DiskStack *ipSourceRod, DiskStack *ipDestinationRod, DiskStack *ipHelperRod);
+void TowerOfHanoi(Node *ipCurrentNode, std::shared_ptr<DiskStack> ispSourceTower, std::shared_ptr<DiskStack> ispDestinationTower, std::shared_ptr<DiskStack> ispHelperTower);
 
 /**
- * @brief Function to move the disk from the source rod to the destination rod
- * @param[in, out] iopSourceRod Pointer to the source rod
- * @param[in, out] iopDestinationRod Pointer to the destination rod
+ * @brief Function to move the disk from the source tower to the destination tower
+ * @param[in, out] iospSourceTower Pointer to the source tower
+ * @param[in, out] iospDestinationTower Pointer to the destination tower
  * @return Return true if the disk was moved successfully, false otherwise
  */
-bool MoveTheDiskToDestination(DiskStack *iopSourceRod, DiskStack *iopDestinationRod);
+bool MoveDiskToDestination(std::shared_ptr<DiskStack> iospSourceTower, std::shared_ptr<DiskStack> iospDestinationTower);
 
 /**
- * @brief Function to print the contents of the three rods
+ * @brief Function to print the contents of the three towers
  */
 void PrintStacks();
 
@@ -57,19 +52,11 @@ void PrintStacks();
 int nbIterations = 0;
 
 /**
- * @brief Pointer to the DiskStack object representing stack A.
+ * @brief Pointers to the DiskStack objects representing 3 towers of Hanoi.
  */
-DiskStack *pStackA = nullptr;
-
-/**
- * @brief Pointer to the DiskStack object representing stack B.
- */
-DiskStack *pStackB = nullptr;
-
-/**
- * @brief Pointer to the DiskStack object representing stack C.
- */
-DiskStack *pStackC = nullptr;
+std::shared_ptr<DiskStack> spStackA;
+std::shared_ptr<DiskStack> spStackB;
+std::shared_ptr<DiskStack> spStackC;
 
 //-------------------------------------------------------------------
 int main()
@@ -84,23 +71,18 @@ int main()
     std::cin >> nbDisks;
 
     /**
-     * Create three stacks for the three rods
-     * DiskStack A is the source rod,
-     * DiskStack B is the helper rod, and
-     * DiskStack C is the destination rod
+     * Create three stacks for the three towers
+     * DiskStack A is the source tower,
+     * DiskStack B is the helper tower, and
+     * DiskStack C is the destination tower
      */
-    pStackA = new DiskStack();
-    pStackB = new DiskStack();
-    pStackC = new DiskStack();
+    spStackA = std::make_shared<DiskStack>();
+    spStackB = std::make_shared<DiskStack>();
+    spStackC = std::make_shared<DiskStack>();
 
-    if ((nullptr == pStackA) || (nullptr == pStackB) || (nullptr == pStackC))
+    if ((!spStackA) || (!spStackB) || (!spStackC))
     {
         std::cout << "Memory allocation failed" << '\n';
-
-        DeleteStack(pStackA);
-        DeleteStack(pStackB);
-        DeleteStack(pStackC);
-
         return -1;
     }
 
@@ -108,7 +90,7 @@ int main()
     Node *pFirstNode = nullptr;
 
     /**
-     *  Push the disks onto the source rod (DiskStack A)
+     *  Push the disks onto the source tower (DiskStack A)
      */
     for (int nDiskIndex = nbDisks; nDiskIndex > 0; --nDiskIndex)
     {
@@ -117,11 +99,6 @@ int main()
         if (nullptr == pNode)
         {
             std::cout << "Memory allocation failed" << '\n';
-
-            DeleteStack(pStackA);
-            DeleteStack(pStackB);
-            DeleteStack(pStackC);
-
             return -1;
         }
 
@@ -134,7 +111,7 @@ int main()
          * Set the previous disk node to the top disk node.
          * This has to be done only once i.e. while initializing the stack.
          */
-        Node *pTopDisk = pStackA->GetTopDisk();
+        Node *pTopDisk = spStackA->GetTopDisk();
 
         if (nullptr != pTopDisk)
         {
@@ -142,36 +119,25 @@ int main()
         }
 
         /**
-         *  Push the disk onto the source rod
+         *  Push the disk onto the source tower
          */
-        pStackA->PushToStack(pNode);
+        spStackA->PushToStack(pNode);
     }
 
     PrintStacks();
 
-    TowerOfHanoi(pFirstNode, pStackA, pStackC, pStackB);
-
-    DeleteStack(pStackA);
-    DeleteStack(pStackB);
-    DeleteStack(pStackC);
+    TowerOfHanoi(pFirstNode, spStackA, spStackC, spStackB);
 
     return 0;
 }
 
 //-------------------------------------------------------------------
-void DeleteStack(DiskStack *&iopStack)
-{
-    delete iopStack;
-    iopStack = nullptr;
-}
-
-//-------------------------------------------------------------------
-void TowerOfHanoi(Node *ipCurrentNode, DiskStack *ipSourceRod, DiskStack *ipDestinationRod, DiskStack *ipHelperRod)
+void TowerOfHanoi(Node *ipCurrentNode, std::shared_ptr<DiskStack> ispSourceTower, std::shared_ptr<DiskStack> ispDestinationTower, std::shared_ptr<DiskStack> ispHelperTower)
 {
     if ((nullptr == ipCurrentNode) ||
-        (nullptr == ipSourceRod) ||
-        (nullptr == ipDestinationRod) ||
-        (nullptr == ipHelperRod))
+        (!ispSourceTower) ||
+        (!ispDestinationTower) ||
+        (!ispHelperTower))
     {
         std::cout << "Invalid input" << '\n';
         return;
@@ -181,58 +147,54 @@ void TowerOfHanoi(Node *ipCurrentNode, DiskStack *ipSourceRod, DiskStack *ipDest
 
     if (nullptr == pNode)
     {
-        MoveTheDiskToDestination(ipSourceRod, ipDestinationRod);
+        MoveDiskToDestination(ispSourceTower, ispDestinationTower);
     }
     else
     {
-        TowerOfHanoi(pNode, ipSourceRod, ipHelperRod, ipDestinationRod);
+        TowerOfHanoi(pNode, ispSourceTower, ispHelperTower, ispDestinationTower);
 
-        MoveTheDiskToDestination(ipSourceRod, ipDestinationRod);
+        MoveDiskToDestination(ispSourceTower, ispDestinationTower);
 
-        TowerOfHanoi(pNode, ipHelperRod, ipDestinationRod, ipSourceRod);
+        TowerOfHanoi(pNode, ispHelperTower, ispDestinationTower, ispSourceTower);
     }
 }
 
 //-------------------------------------------------------------------
-bool MoveTheDiskToDestination(DiskStack *iopSourceRod, DiskStack *iopDestinationRod)
+bool MoveDiskToDestination(std::shared_ptr<DiskStack> iospSourceTower, std::shared_ptr<DiskStack> iospDestinationTower)
 {
+    if ((!iospSourceTower) || (!iospDestinationTower))
+    {
+        return false;
+    }
+
     bool bDiskMoved(false);
 
-    if ((nullptr != iopSourceRod) && (nullptr != iopDestinationRod))
+    /// Get the top disk from the source tower and the destination tower.
+    Node *pSourceTop = iospSourceTower->GetTopDisk();
+    Node *pDestinationTop = iospDestinationTower->GetTopDisk();
+
+    if (nullptr != pSourceTop)
     {
-        /**
-         * Get the top disk from the source rod and the destination rod.
-         */
-        Node *pSourceTop = iopSourceRod->GetTopDisk();
-        Node *pDestinationTop = iopDestinationRod->GetTopDisk();
+        bool bMoveTheDisk(false);
 
-        if (nullptr != pSourceTop)
+        /// Check whether the destination tower is empty, or the top disk of the source tower is smaller than the top disk of the destination tower.
+        if (nullptr == pDestinationTop)
         {
-            bool bMoveTheDisk(false);
+            bMoveTheDisk = true;
+        }
+        else if (pSourceTop->GetData() < pDestinationTop->GetData())
+        {
+            bMoveTheDisk = true;
+        }
 
-            /**
-             * Check whether the destination rod is empty, or the top disk of the source rod is smaller than the top disk of the destination rod.
-             */
-            if (nullptr == pDestinationTop)
-            {
-                bMoveTheDisk = true;
-            }
-            else if (pSourceTop->GetData() < pDestinationTop->GetData())
-            {
-                bMoveTheDisk = true;
-            }
+        /// If above condition is satisfied then move the disk from the source towerer to the destination tower.
+        if (bMoveTheDisk)
+        {
+            iospDestinationTower->PushToStack(iospSourceTower->PopFromStack());
 
-            /**
-             * If above condition is satisfied then move the disk from the source rod to the destination rod.
-             */
-            if (bMoveTheDisk)
-            {
-                iopDestinationRod->PushToStack(iopSourceRod->PopFromStack());
+            PrintStacks();
 
-                PrintStacks();
-
-                bDiskMoved = true;
-            }
+            bDiskMoved = true;
         }
     }
 
@@ -244,22 +206,22 @@ void PrintStacks()
 {
     /**
      * Print current iteration number
-     * Print all the contents of the source rod
-     * Print all the contents of the helper rod
-     * Print all the contents of the destination rod
+     * Print all the contents of the source tower
+     * Print all the contents of the helper tower
+     * Print all the contents of the destination tower
      */
     std::cout << "Iteration: " << nbIterations++ << '\n';
 
     std::cout << "         [TOP]" << '\n';
 
     std::cout << "Tower A: ";
-    pStackA->PrintStack();
+    spStackA->PrintStack();
 
     std::cout << "Tower B: ";
-    pStackB->PrintStack();
+    spStackB->PrintStack();
 
     std::cout << "Tower C: ";
-    pStackC->PrintStack();
+    spStackC->PrintStack();
 
     std::cout << '\n';
     std::cout << "-----------------------------" << '\n';

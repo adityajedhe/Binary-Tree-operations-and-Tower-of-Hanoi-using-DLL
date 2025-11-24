@@ -29,7 +29,7 @@ public:
     /**
      * @brief Constructor for DiskStack
      */
-    DiskStack() = default;
+    explicit DiskStack() = default;
 
     /**
      * @brief Destructor for DiskStack
