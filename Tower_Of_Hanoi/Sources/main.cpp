@@ -250,15 +250,15 @@ void PrintStacks()
      */
     std::cout << "Iteration: " << nbIterations++ << std::endl;
 
-    std::cout << "       [TOP]" << std::endl;
+    std::cout << "         [TOP]" << std::endl;
 
-    std::cout << "Rod A: ";
+    std::cout << "Tower A: ";
     pStackA->PrintStack();
 
-    std::cout << "Rod B: ";
+    std::cout << "Tower B: ";
     pStackB->PrintStack();
 
-    std::cout << "Rod C: ";
+    std::cout << "Tower C: ";
     pStackC->PrintStack();
 
     std::cout << std::endl;
