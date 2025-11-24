@@ -24,7 +24,7 @@ all: $(OBJ_DIR) $(OUTPUT_DIR) $(TARGET)
 # Link object files to create the executable
 $(TARGET): $(OBJS)
 	@echo "==Executable:" $@
-	@$(CCPP) -o $@ $^ -L $(OUTPUT_DIR)/ -lNode
+	@$(CCPP) -o $@ $^ -L $(OUTPUT_DIR)/
 
 # Compile source files to object files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
